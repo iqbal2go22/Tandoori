@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Standings</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .header img {
+            height: 40px;
+            margin-right: 15px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            background-color: #004494;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-bar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .nav-bar a:hover, .nav-bar a:active {
+            background-color: #003366;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .nav-bar .active {
+            border-bottom: 3px solid white;
+        }
+        .container {
+            margin: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+        .standings-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .standings-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .rank-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .rank-item:last-child {
+            border-bottom: none;
+        }
+        .rank-number {
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .rank-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .rank-info .team-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .rank-info .score {
+            font-size: 14px;
+            color: #888;
+        }
+        .points-behind {
+            font-size: 14px;
+            color: #ff0000; /* Highlight in red */
+            margin-left: 5px;
+        }
+        .payout-amount {
+            font-size: 18px;
+            color: #28a745;
+            font-weight: bold;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="{{ url_for('static', filename='fanduel.jpg') }}" alt="Fanduel Logo">
+    <h1>Tandoori Kimchi on a Cracker - Standings</h1>
+</div>
+<div class="nav-bar">
+    <a href="{{ url_for('summary') }}" class="{% if request.endpoint == 'summary' %}active{% endif %}">Summary</a>
+    <a href="{{ url_for('weekly_scores') }}" class="{% if request.endpoint == 'weekly_scores' %}active{% endif %}">Weekly Scores</a>
+    <a href="{{ url_for('weekly_payouts') }}" class="{% if request.endpoint == 'weekly_payouts' %}active{% endif %}">Weekly Payouts</a>
+    <a href="{{ url_for('standings') }}" class="{% if request.endpoint == 'standings' %}active{% endif %}">Standings</a>
+</div>
+
+<div class="container">
+    <!-- Total Points Standings Card -->
+    <div class="standings-card">
+        <div class="standings-header">
+            <h2>Total Points Standings</h2>
+        </div>
+        {% for row in total_data %}
+        <div class="rank-item">
+            <div class="rank-number">{{ row['TotalRank'] }}</div>
+            <div class="rank-info">
+                <div class="team-name">{{ row['TeamName'] }}</div>
+                <div class="score">
+                    {{ row['Total'] }} points
+                    {% if row['PointsBehind'] > 0 %}
+                    <span class="points-behind">(-{{ row['PointsBehind'] }} behind)</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% if row['PayoutAmount'] and row['PayoutAmount']|float > 0 %}
+            <div class="payout-amount">${{ row['PayoutAmount']|int }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Adjusted Points Standings Card -->
+    <div class="standings-card">
+        <div class="standings-header">
+            <h2>Adjusted Points Standings</h2>
+        </div>
+        {% for row in adjusted_data %}
+        <div class="rank-item">
+            <div class="rank-number">{{ row['PayoutRank'] }}</div>
+            <div class="rank-info">
+                <div class="team-name">{{ row['TeamName'] }}</div>
+                <div class="score">
+                    {{ row['AdjustedTotal'] }} points
+                    {% if row['PointsBehind'] > 0 %}
+                    <span class="points-behind">(-{{ row['PointsBehind'] }} behind)</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% if row['PayoutAmount'] and row['PayoutAmount']|float > 0 %}
+            <div class="payout-amount">${{ row['PayoutAmount']|int }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Top 3 Individual Scores Card -->
+    <div class="standings-card">
+        <div class="standings-header">
+            <h2>Top 3 Individual Scores</h2>
+        </div>
+        {% for row in top_3_scores_data %}
+        <div class="rank-item">
+            <div class="rank-number">{{ loop.index }}</div>
+            <div class="rank-info">
+                <div class="team-name">{{ row['TeamName'] }}</div>
+                <div class="score">{{ row['Score'] }} points</div>
+            </div>
+            {% if row['PayoutAmount'] and row['PayoutAmount']|float > 0 %}
+            <div class="payout-amount">${{ row['PayoutAmount'] }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Head to Head Standings Card -->
+    <div class="standings-card">
+        <div class="standings-header">
+            <h2>Head to Head Standings</h2>
+        </div>
+        {% for row in head_to_head_data %}
+        <div class="rank-item">
+            <div class="rank-number">{{ loop.index }}</div>
+            <div class="rank-info">
+                <div class="team-name">{{ row['TeamName'] }}</div>
+                <div class="score"><span style="color: #28a745;">Wins: {{ row['Wins'] }}</span> | <span style="color: #ff0000;">Losses: {{ row['Losses'] }}</span></div>
+                <div class="score">Win Percentage: {{ (row['WinPercentage'] * 100)|round(1) }}%</div>
+            </div>
+            {% if row['TotalPayout'] and row['TotalPayout']|float > 0 %}
+            <div class="payout-amount">${{ row['TotalPayout']|int }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Weekly Payouts Aggregation Card -->
+    <div class="standings-card">
+        <div class="standings-header">
+            <h2>Weekly Payouts Aggregation</h2>
+        </div>
+        {% for row in weekly_payouts_agg_data %}
+        <div class="rank-item">
+            <div class="rank-number">{{ loop.index }}</div>
+            <div class="rank-info">
+                <div class="team-name">{{ row['TeamName'] }}</div>
+            </div>
+            {% if row['PayoutAmount'] and row['PayoutAmount']|float > 0 %}
+            <div class="payout-amount">${{ row['PayoutAmount']|int }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Payout Standings Card -->
+    <div class="standings-card">
+        <div class="standings-header">
+            <h2>Total Payout Standings</h2>
+        </div>
+        {% for row in total_payout_data %}
+        <div class="rank-item">
+            <div class="rank-number">{{ row['Rank'] }}</div>
+            <div class="rank-info">
+                <div class="team-name">{{ row['TeamName'] }}</div>
+            </div>
+            {% if row['TotalPayout'] and row['TotalPayout']|float > 0 %}
+            <div class="payout-amount">${{ row['TotalPayout']|int }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
