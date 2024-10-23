@@ -3,244 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/styles.css">
     <title>Player Cards</title>
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/styles.css">
     <style>
-    .header {
-        background-color: #0056b3;
-        color: white;
-        padding: 15px;
-        display: flex;
-        align-items: center;
-    }
-    .header img {
-        height: 40px;
-        margin-right: 15px;
-    }
-    .header h1 {
-        margin: 0;
-        font-size: 20px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .nav-bar {
-        display: flex;
-        justify-content: center;
-        background-color: #004494;
-        padding: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-    }
-    .nav-bar a {
-        color: white;
-        margin: 0 15px;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 10px 15px;
-        transition: background-color 0.3s, box-shadow 0.3s;
-    }
-    .nav-bar a:hover, .nav-bar a:active {
-        background-color: #003366;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    .nav-bar .active {
-        border-bottom: 3px solid white;
-    }
-    body {
-        background-color: #f0f0f0;
-        font-family: Arial, sans-serif;
-        
-    }
+        /* Include only the necessary CSS modifications */
 
-    .page-header {
-        text-align: center;
-        padding: 12px;
-        background: white;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
+        .header {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .header img {
+            height: 40px;
+            margin-right: 15px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            background-color: #004494;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .nav-bar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .nav-bar a:hover, .nav-bar a:active {
+            background-color: #003366;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .nav-bar .active {
+            border-bottom: 3px solid white;
+        }
 
-    .teams-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 16px;
-        max-width: 1600px;
-        margin: 0 auto;
-    }
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .teams-grid {
+            display: flex; /* Set up the container as a flexbox */
+            flex-wrap: wrap; /* Allow items to wrap onto the next line if needed */
+            gap: 16px; /* Space between the cards */
+            justify-content: center; /* Center the cards horizontally within the container */
+            max-width: 1600px; /* Optional: limit the container's maximum width */
+            margin: 0 auto; /* Center the container within the page */
+        }
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            overflow: hidden;
+            width: 340px;
+            margin: 20px auto;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .team-image {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background-color: #0056b3;
+        }
+        .team-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .team-info {
+            padding: 15px;
+        }
+        .team-name {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-align: center;
+            color: #2d3748;
+        }
 
-    .team-card {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        overflow: hidden;
-        height: 380px;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
+        /* Scoring Section */
+        .scoring-section {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #0056b3;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            position: relative;
+            letter-spacing: 1px;
+        }
 
-    .team-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-    }
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: #0056b3;
+            display: block;
+            margin: 5px auto;
+            border-radius: 2px;
+        }
 
-    .team-image {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-        box-sizing: border-box;
-    }
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .score-item {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .score-item:hover {
+            background-color: #e8f4ff;
+            transform: translateY(-3px);
+        }
+        .score-label {
+            color: #0056b3;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .score-label i {
+            margin-right: 5px;
+        }
+        .score-value {
+            font-weight: bold;
+            color: #2d3748;
+            font-size: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
 
-    
+        /* Existing Stats and Payout Section */
+        .payout-section {
+            background: #e8f4ff;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .total-payout {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 800;
+            color: #2d3748;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #cce0ff;
+            padding-bottom: 5px;
+        }
+        .payout-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .payout-item {
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .payout-label {
+            color: #0056b3;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .payout-value {
+            font-weight: bold;
+            color: #2d3748;
+            font-size: 18px;
+        }
 
-    .team-logo {
-        width: 120px;  /* Adjusted size to make sure it fits well within the card */
-        height: 120px; /* Same as width to maintain a circular aspect */
-        border-radius: 50%;
-        border: 4px solid #0056b3; /* Blue border to match your desired style */
-        object-fit: cover;  /* Ensures the image scales and crops appropriately to fit */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+        /* Core Stats */
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-
-    .team-info {
-        padding: 12px;
-    }
-
-    .team-name {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 10px;
-        text-align: center;
-        color: #2d3748;
-        border-bottom: 2px solid #edf2f7;
-        padding-bottom: 6px;
-    }
-
-    .stats-container {
-        display: grid;
-        gap: 8px;
-    }
-
-    .payout-section {
-        background: #e8f4ff;
-        padding: 10px;
-        border-radius: 8px;
-        margin-bottom: 5px;
-    }
-
-    .total-payout {
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-        color: #2d3748;
-        margin-bottom: 8px;
-        border-bottom: 1px solid #cce0ff;
-        padding-bottom: 5px;
-    }
-
-    .payout-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 5px;
-    }
-
-    .payout-item {
-        background: white;
-        padding: 6px;
-        border-radius: 6px;
-        text-align: center;
-    }
-
-    .payout-label {
-        color: #718096;
-        font-size: 10px;
-        text-transform: uppercase;
-    }
-
-    .payout-value {
-        font-weight: bold;
-        color: #2d3748;
-        font-size: 14px;
-    }
-
-    .stat-row {
-        display: flex;
-        justify-content: space-between;
-        padding: 8px 12px;
-        background: #f8f9fa;
-        border-radius: 8px;
-        align-items: center;
-    }
-
-    .scoring-section {
-        background: #f7fdf7;
-        padding: 10px;
-        border-radius: 8px;
-        margin-top: 5px;
-    }
-
-    .section-title {
-        text-align: center;
-        font-size: 14px;
-        font-weight: bold;
-        color: #2d3748;
-        margin-bottom: 8px;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 5px;
-    }
-
-    .score-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
-    }
-
-    .score-item {
-        background: white;
-        padding: 6px;
-        border-radius: 6px;
-        text-align: center;
-    }
-
-    .score-label {
-        color: #718096;
-        font-size: 10px;
-        text-transform: uppercase;
-    }
-
-    .score-value {
-        font-weight: bold;
-        color: #2d3748;
-        font-size: 14px;
-    }
-
-    .wins { color: #2f855a; }
-    .losses { color: #e53e3e; }
-    .rank { color: #805ad5; font-weight: 700; }
-
-    .placeholder-img {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, #e2e8f0, #edf2f7);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #718096;
-        font-weight: 500;
-    }
+        .rank { 
+            color: #805ad5; 
+            font-weight: 800; 
+            font-size: 18px;
+        }
+        .wins { 
+            color: #2f855a; 
+            font-weight: bold; 
+            font-size: 16px; 
+        }
     </style>
 </head>
 <body>
-<div class="header">
-    <img src="static/fanduel.jpg" alt="Fanduel Logo">
-    <h1>Tandoori Kimchi on a Cracker - Team Statistics</h1>
-</div>
-
-<div class="nav-bar">
+    <!-- Header Section -->
+    <div class="header">
+        <img src="static/fanduel.jpg" alt="Fanduel Logo" style="height: 40px; margin-right: 15px;">
+        <h1>Tandoori Kimchi on a Cracker - Team Statistics</h1>
+    </div>
+    <!-- Navigation Section -->
+    <div class="nav-bar">
             <a href="index.html" class="">Summary</a>
             <a href="weekly_scores.html" class="">Weekly Scores</a>
             <a href="weekly_payouts.html" class="">Weekly Payouts</a>
@@ -248,36 +246,58 @@
             <a href="team_stats.html" class="active">Player Cards</a>
         </div>
 
-<div class="teams-grid">
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/hiren.jpg" alt="Hiren" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Hiren</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $565</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$90</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$25</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$225</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$225</div>
-                            </div>
+    <!-- Main Content -->
+    <div class="teams-grid">
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/hiren.jpg" alt="Hiren" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Hiren</div>
+
+                <!-- New Scoring Metrics Section -->
+                <div class="scoring-section">
+                    <div class="section-title">Scoring Stats</div>
+                    <div class="score-grid">
+                        <div class="score-item">
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">3</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">666.7</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">86.9</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">175.3</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $565</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$90</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$25</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$225</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$225</div>
                         </div>
                     </div>
                 </div>
@@ -294,61 +314,58 @@
                         (63.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/deep.jpg" alt="Deep" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Deep</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">3</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">2</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">666.7</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">157.6</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">86.9</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">63.4</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">175.3</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">115.7</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/deep.jpg" alt="Deep" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Deep</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $395</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$100</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$20</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$150</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$125</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $395</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$100</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$20</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$150</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$125</div>
                         </div>
                     </div>
                 </div>
@@ -365,61 +382,58 @@
                         (50.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/amar.jpg" alt="Amar" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Amar</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">2</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">4</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">157.6</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">148.7</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">63.4</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">86.7</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">115.7</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">121.4</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/amar.jpg" alt="Amar" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Amar</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $270</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$140</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$30</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$100</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $270</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$140</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$30</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$100</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -436,61 +450,58 @@
                         (75.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/anwar.jpg" alt="Anwar" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Anwar</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">4</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">2</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">148.7</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">155.6</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">86.7</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">75.3</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">121.4</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">105.4</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/anwar.jpg" alt="Anwar" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Anwar</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $190</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$75</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$15</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$100</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $190</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$75</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$15</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$100</div>
                         </div>
                     </div>
                 </div>
@@ -507,61 +518,58 @@
                         (38.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/ajay.jpg" alt="Ajay" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Ajay</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">2</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">3</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">155.6</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">143.0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">75.3</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">81.5</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">105.4</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">113.5</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/ajay.jpg" alt="Ajay" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Ajay</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $110</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$80</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$30</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $110</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$80</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$30</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -578,61 +586,58 @@
                         (75.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/salman.jpg" alt="Salman" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Salman</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">3</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">143.0</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">129.8</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">81.5</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">95.9</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">113.5</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">117.1</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/salman.jpg" alt="Salman" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Salman</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $75</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$50</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$25</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $75</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$50</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$25</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -649,61 +654,58 @@
                         (63.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/farhan.jpg" alt="Farhan" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Farhan</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">1</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">2</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">129.8</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">129.3</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">95.9</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">79.4</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">117.1</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">107.4</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/farhan.jpg" alt="Farhan" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Farhan</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $45</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$30</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$15</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $45</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$30</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$15</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -720,61 +722,58 @@
                         (38.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/rikki.jpg" alt="Rikki" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Rikki</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">2</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">129.3</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">136.6</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">79.4</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">57.1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">107.4</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">106.8</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/rikki.jpg" alt="Rikki" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Rikki</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $45</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$25</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$20</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $45</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$25</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$20</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -791,61 +790,58 @@
                         (50.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/vlad.jpg" alt="Vlad" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Vlad</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
                             <div class="score-value">1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">136.6</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">136.2</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">57.1</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">38.0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">106.8</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">107.1</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/vlad.jpg" alt="Vlad" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Vlad</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $40</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$15</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$25</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $40</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$15</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$25</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -862,61 +858,58 @@
                         (63.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/keven.jpg" alt="Keven" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Keven</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
                             <div class="score-value">1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">136.2</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">149.0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">38.0</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">82.2</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
                             <div class="score-value">107.1</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/keven.jpg" alt="Keven" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Keven</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $40</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$25</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$15</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $40</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$25</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$15</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -933,61 +926,58 @@
                         (38.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/ajesh.jpg" alt="Ajesh" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Ajesh</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
                             <div class="score-value">1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">149.0</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">128.3</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">82.2</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">98.0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">107.1</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">114.0</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/ajesh.jpg" alt="Ajesh" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Ajesh</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $40</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$25</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$15</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $40</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$25</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$15</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -1004,61 +994,58 @@
                         (38.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/amish.jpg" alt="Amish" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Amish</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
                             <div class="score-value">1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">128.3</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">136.1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">98.0</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">73.3</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">114.0</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">103.4</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/amish.jpg" alt="Amish" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Amish</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $35</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$25</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$10</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $35</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$25</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$10</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -1075,61 +1062,58 @@
                         (25.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/jay.jpg" alt="Jay" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Jay</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">1</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">136.1</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">135.9</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">73.3</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">83.4</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">103.4</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">111.9</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/jay.jpg" alt="Jay" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Jay</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $35</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$35</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $35</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$35</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -1146,61 +1130,58 @@
                         (88.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/logan.jpg" alt="Logan" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Logan</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">0</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">135.9</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">137.7</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">83.4</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">58.0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">111.9</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">108.4</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/logan.jpg" alt="Logan" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Logan</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $35</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$15</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$20</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $35</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$15</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$20</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -1217,61 +1198,58 @@
                         (50.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/chuck.jpg" alt="Chuck" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Chuck</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
                             <div class="score-value">1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">137.7</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">141.3</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">58.0</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">66.0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">108.4</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">101.7</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/chuck.jpg" alt="Chuck" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Chuck</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $35</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$25</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$10</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $35</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$25</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$10</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -1288,61 +1266,58 @@
                         (25.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/iqbal.jpg" alt="Iqbal" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Iqbal</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">1</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
+                            <div class="score-value">0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">141.3</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">132.1</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">66.0</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">94.2</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">101.7</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">117.0</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/iqbal.jpg" alt="Iqbal" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Iqbal</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $25</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$25</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $25</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$25</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -1359,61 +1334,58 @@
                         (63.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/joshi.jpg" alt="Joshi" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">Joshi</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
                             <div class="score-value">0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">132.1</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">136.0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">94.2</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">73.4</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">117.0</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">102.9</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/joshi.jpg" alt="Joshi" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">Joshi</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $15</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$15</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $15</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$15</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -1430,61 +1402,58 @@
                         (38.0%)
                     </span>
                 </div>
+            </div>
+        </div>
+        
+        <div class="team-card">
+            <div class="team-image">
+                <img src="static/john.jpg" alt="John" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
+            </div>
+            <div class="team-info">
+                <div class="team-name">John</div>
 
-                <!-- Scoring Section -->
+                <!-- New Scoring Metrics Section -->
                 <div class="scoring-section">
                     <div class="section-title">Scoring Stats</div>
                     <div class="score-grid">
                         <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
+                            <div class="score-label"><i class="fas fa-trophy"></i> Top 3 Finishes</div>
                             <div class="score-value">0</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">136.0</div>
+                            <div class="score-label"><i class="fas fa-star"></i> Highest Score</div>
+                            <div class="score-value highlight">129.4</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">73.4</div>
+                            <div class="score-label"><i class="fas fa-arrow-down"></i> Lowest Score</div>
+                            <div class="score-value">86.7</div>
                         </div>
                         <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">102.9</div>
+                            <div class="score-label"><i class="fas fa-chart-bar"></i> Average Score</div>
+                            <div class="score-value">111.1</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="team-card">
-        <div class="team-image">
-            <img src="static/john.jpg" alt="John" class="team-logo" onerror="this.onerror=null;this.src="static/placeholder.png';">
-        </div>
-        <div class="team-info">
-            <div class="team-name">John</div>
-            <div class="stats-container">
-                <!-- Payout Section -->
-                <div class="stat-row highlight">
-                    <div class="payout-section">
-                        <div class="total-payout">Total Payout: $10</div>
-                        <div class="payout-grid">
-                            <div class="payout-item">
-                                <div class="payout-label">Weekly Top 3</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Head to Head</div>
-                                <div class="payout-value">$10</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Adjusted Standing</div>
-                                <div class="payout-value">$0</div>
-                            </div>
-                            <div class="payout-item">
-                                <div class="payout-label">Season High Score</div>
-                                <div class="payout-value">$0</div>
-                            </div>
+
+                <!-- Existing Payout and Stats Section -->
+                <div class="payout-section">
+                    <div class="total-payout">Total Payout: $10</div>
+                    <div class="payout-grid">
+                        <div class="payout-item">
+                            <div class="payout-label">Weekly Top 3</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Head to Head</div>
+                            <div class="payout-value">$10</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Adjusted Standing</div>
+                            <div class="payout-value">$0</div>
+                        </div>
+                        <div class="payout-item">
+                            <div class="payout-label">Season High Score</div>
+                            <div class="payout-value">$0</div>
                         </div>
                     </div>
                 </div>
@@ -1501,33 +1470,9 @@
                         (25.0%)
                     </span>
                 </div>
-
-                <!-- Scoring Section -->
-                <div class="scoring-section">
-                    <div class="section-title">Scoring Stats</div>
-                    <div class="score-grid">
-                        <div class="score-item">
-                            <div class="score-label">Top 3 Finishes</div>
-                            <div class="score-value">0</div>
-                        </div>
-                        <div class="score-item">
-                            <div class="score-label">Highest Score</div>
-                            <div class="score-value highlight">129.4</div>
-                        </div>
-                        <div class="score-item">
-                            <div class="score-label">Lowest Score</div>
-                            <div class="score-value">86.7</div>
-                        </div>
-                        <div class="score-item">
-                            <div class="score-label">Average Score</div>
-                            <div class="score-value">111.1</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+        
     </div>
-    
-</div>
 </body>
 </html>
