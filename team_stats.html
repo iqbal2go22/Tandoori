@@ -64,6 +64,7 @@
             max-width: 1600px; /* Optional: limit the container's maximum width */
             margin: 0 auto; /* Center the container within the page */
         }
+   
         .team-card {
             background: white;
             border-radius: 12px;
@@ -72,6 +73,13 @@
             width: 340px;
             margin: 20px auto;
             transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        @media (max-width: 768px) {
+            .team-card {
+                width: 100%; /* Take full width on smaller screens */
+                margin: 10px; /* Add margin to avoid cards touching screen edges */
+            }
         }
         .team-card:hover {
             transform: translateY(-5px);
